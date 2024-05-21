@@ -1,0 +1,65 @@
+Batiment.java
+
+package gestion_entreprise;
+
+public class Batiment {
+	private String nom;
+    private double superficie;
+    private String type;
+    private int nombreEtages;
+
+    
+    public Batiment(String nom, double superficie, String type, int nombreEtages) {
+        this.nom = nom;
+        this.superficie = superficie;
+        this.type = type;
+        this.nombreEtages = nombreEtages;
+    }
+
+    
+    
+    
+    public String getNom() {
+        return this.nom;
+    }
+
+    
+    
+    public double estimerCoutConstruction() {
+        double coutTotal = 0;
+
+        // Calcul du coût en fonction de la superficie
+        coutTotal += this.superficie * 1000; // Supposons que le coût par mètre carré soit de 1000 euros
+
+        // Calcul du coût en fonction du type de bâtiment
+     
+        if (this.type.equals("résidentiel")) {
+            coutTotal += 5000; // Supposons que le coût supplémentaire pour les bâtiments résidentiels soit de 5000 euros
+        } else if (this.type.equals("commercial")) {
+            coutTotal += 10000; // Supposons que le coût supplémentaire pour les bâtiments commerciaux soit de 10000 euros
+        }
+
+        // Calcul du coût en fonction du nombre d'étages
+      
+        coutTotal += this.nombreEtages * 2000; // Supposons que le coût par étage soit de 2000 euros
+
+        
+        return coutTotal;
+    }
+
+    
+    
+    public double getSurfaceTotale() {
+        return this.superficie * this.nombreEtages;
+    }
+    
+    public String getDescription() {
+        return "Nom : " + this.nom + ", Superficie : " + this.superficie + " m², Type : " + this.type + ", Nombre d'étages : " + this.nombreEtages;
+    }
+    
+    public boolean estPermanent() {
+
+        // Par exemple, si le type de bâtiment est "Résidentiel" ou "Commercial", considérez-le comme permanent
+        return this.type.equals("Résidentiel") || this.type.equals("Commercial");
+    }
+}

@@ -1,0 +1,112 @@
+Entrepreneur.java
+
+package gestion_entreprise;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Entrepreneur {
+	private String nom;
+    private String adresse;
+    private List<Projet> projets;
+    
+    public Entrepreneur(String nom, String adresse) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.projets = new ArrayList<>();}
+    
+    public String getNomEntrepreneur() {
+        return this.nom;
+    }
+
+    
+    public void afficherInformations() {
+        System.out.println("Informations sur l'entrepreneur " + this.nom + " :");
+        System.out.println("Adresse : " + this.adresse);
+        afficherProjets();
+    }
+    
+    
+    public void modifierAdresse(String nouvelleAdresse) {
+        this.adresse = nouvelleAdresse;
+        System.out.println("L'adresse de l'entrepreneur " + this.nom + " a été modifiée : " + nouvelleAdresse);
+    }
+    
+
+    
+
+public void creerProjet(String nom, String localisation, Date dateDebut, Date dateFinPrevue, double budget) {
+    Projet projet = new Projet(nom, localisation, dateDebut, dateFinPrevue, budget);
+    this.projets.add(projet);
+    System.out.println("Le projet \"" + nom + "\" a été créé par l'entrepreneur " + this.nom);
+}
+
+
+
+public void afficherProjets() {
+    System.out.println("Les projets de l'entrepreneur 1 " + this.nom + " sont :");
+    for (Projet projet : this.projets) {
+        System.out.println("- " + projet.getNom());
+    }
+    }
+
+
+
+public void ajouterBatimentAProjet(String nomProjet, Batiment batiment) {
+    for (Projet projet : this.projets) {
+        if (projet.getNom().equals(nomProjet)) {
+            projet.ajouterBatiment(batiment);
+            System.out.println("Le bâtiment \"" + batiment.getNom() + "\" a été ajouté au projet \"" + nomProjet + "\".");
+            
+        }
+    }
+    System.out.println("Le projet \"" + nomProjet + "\" n'a pas été trouvé.");
+}
+
+
+
+public double calculerCoutTotalProjets() {
+    double coutTotal = 0;
+    for (Projet projet : this.projets) {
+        coutTotal += projet.getBudget();
+    }
+    return coutTotal;
+}
+
+
+public Projet rechercherProjetParNom(String nomProjet) {
+    for (Projet projet : this.projets) {
+        if (projet.getNom().equals(nomProjet)) {
+            return projet;
+        }
+    }
+    return null;
+}
+
+
+public void supprimerProjet(String nomProjet) {
+    this.projets.removeIf(projet -> projet.getNom().equals(nomProjet));
+    System.out.println("Le projet \"" + nomProjet + "\" a été supprimé.");
+}
+
+
+
+public void afficherBatimentsProjet(String nomProjet) {
+    Projet projet = rechercherProjetParNom(nomProjet);
+    if (projet != null) {
+        projet.afficherBatiments();
+    } else {
+        System.out.println("Le projet \"" + nomProjet + "\" n'a pas été trouvé.");
+    }
+    
+}
+
+public String getAdresseEntrepreneur() {
+	
+	return this.adresse;
+}
+
+
+
+}

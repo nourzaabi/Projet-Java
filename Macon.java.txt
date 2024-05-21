@@ -1,0 +1,87 @@
+Macon.java
+
+package gestion_entreprise;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class Macon extends Employe {
+    private String qualification;
+    private int experience;
+
+    // Constructeur
+    public Macon(String nom, String role, double salaire, String qualification, int experience, Date date_embauche) {
+        super(nom, role, experience, date_embauche , qualification, salaire);
+        this.qualification = qualification;
+        this.experience = experience;
+    }
+
+    // Getters et setters pour les attributs spécifiques
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public double calculerQuantiteMateriaux() {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Saisie de la surface à couvrir
+        System.out.print("Entrez la surface à couvrir en mètres carrés : ");
+        double surface = scanner.nextDouble();
+        
+        // Saisie de l'épaisseur du matériau
+        System.out.print("Entrez l'épaisseur du matériau en mètres : ");
+        double epaisseur = scanner.nextDouble();
+        
+        scanner.close();
+        
+        
+        
+        
+        
+        // Calcul de la quantité de matériau nécessaire
+        double quantiteMateriau = surface * epaisseur;
+        
+        return quantiteMateriau;
+    }
+
+    
+    
+    // Méthode pour utiliser les matériaux fournis par un fournisseur
+    public void utiliserMateriaux(Material materiau) {
+        // Implémentation spécifique à l'utilisation des matériaux par un maçon
+        // Par exemple, utiliser le matériau (ciment, brique, etc.) dans la construction
+        System.out.println("Le maçon " + this.getNom() + " utilise les matériaux fournis par le fournisseur : " + materiau);
+       
+        
+        
+    }
+
+
+    // Méthode pour construire un mur
+    public void construireMur() {
+        System.out.println("Le maçon " + this.getNom() + " construit un mur.");
+    }
+
+    // Méthode pour préparer du mortier
+    public void preparerMortier() {
+        System.out.println("Le maçon " + this.getNom() + " prépare du mortier.");
+    }
+
+    // Méthode pour poser des briques
+    public void poserBriques(int quantite) {
+        System.out.println("Le maçon " + this.getNom() + " pose " + quantite + " briques.");
+    }
+
+}

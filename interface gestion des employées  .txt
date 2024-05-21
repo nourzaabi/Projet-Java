@@ -1,0 +1,325 @@
+interface gestion des employées : 
+
+Employeeframe.java
+package gestion_entreprise;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+
+
+
+public class Employeeframe {
+
+	
+	private Connection conn;
+	
+    private JFrame frame;
+    private JTextField prenomTextField;
+    private JTextField cinTextField;
+    private JTextField dateEmbaucheTextField;
+    private JTextField roleTextField;
+    private JTextField salaireTextField;
+    private JTextField textField;
+    private JTextField textField_1;
+    private JTextField textField_2;
+    private JTextField textField_3;
+    private JTextField textField_4;
+    private JTextField textField_5;
+    
+    private JTable table;
+    
+	private JLabel jtxtnom;
+	
+	private Connection connection;
+	
+	
+	PreparedStatement pst = null ;
+	
+	ResultSet rs = null ;
+	
+	DefaultTableModel model = new DefaultTableModel();
+	private String[] columnDatas;
+	
+
+	
+	
+	
+	public void updateTable() {
+	    try {
+	        String sql = "SELECT nom, prenom, cin, date_embauche, role, salaire FROM employee";
+	        PreparedStatement pst = conn.prepareStatement(sql);
+	        ResultSet rs = pst.executeQuery();
+	        while(rs.next()) {
+	            Object[] rowData = new Object[6];
+	            rowData[0] = rs.getString("nom");
+	            rowData[1] = rs.getString("prenom");
+	            rowData[2] = rs.getInt("cin");
+	            rowData[3] = rs.getString("date_embauche");
+	            rowData[4] = rs.getString("role");
+	            rowData[5] = rs.getDouble("salaire");
+	            model.addRow(rowData); // Ajout de la ligne de données au modèle de tableau
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        JOptionPane.showMessageDialog(null, "Erreur lors de la récupération des données : " + e.getMessage());
+	    }
+	}
+
+
+
+	 public static void main(String[] args) {
+	        try {
+	            Employeeframe window = new Employeeframe();
+	            window.frame.setVisible(true);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	 
+
+	    public Employeeframe() throws SQLException, ClassNotFoundException {
+	        initialize();
+	        conn = employeData.connectDB();
+	        Object col[] = {"nom", "prenom", "cin", "date_embauche", "role", "salaire"};
+	        model.setColumnIdentifiers(col);
+	        table.setModel(model); 
+	        updateTable(); 
+	    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        private void initialize() {
+        	frame = new JFrame();
+            frame.setTitle("Welcome Admin");
+            frame.setBounds(100, 100, 814, 513);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().setLayout(null);
+
+		
+	
+
+		JLabel lblnomemploye = new JLabel("NOM_EMPLOYE :");
+        lblnomemploye.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblnomemploye.setBounds(10, 10, 156, 29);
+        frame.getContentPane().add(lblnomemploye);
+        
+        JLabel lblPrenomemploye = new JLabel("PRENOM_EMPLOYE :");
+        lblPrenomemploye.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblPrenomemploye.setBounds(10, 66, 156, 29);
+        frame.getContentPane().add(lblPrenomemploye);
+        
+        JLabel lblCin = new JLabel("CIN :");
+        lblCin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblCin.setBounds(10, 125, 156, 29);
+        frame.getContentPane().add(lblCin);
+        
+        JLabel lblDateembauche = new JLabel("Date_embauche :");
+        lblDateembauche.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblDateembauche.setBounds(10, 182, 156, 29);
+        frame.getContentPane().add(lblDateembauche);
+        
+        JLabel lblRole = new JLabel("ROLE :");
+        lblRole.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblRole.setBounds(10, 239, 156, 29);
+        frame.getContentPane().add(lblRole);
+        
+        JLabel lblSalaire = new JLabel("Salaire :");
+        lblSalaire.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblSalaire.setBounds(10, 298, 156, 29);
+        frame.getContentPane().add(lblSalaire);
+        
+        textField = new JTextField();
+        textField.setBounds(10, 37, 224, 29);
+        frame.getContentPane().add(textField);
+        textField.setColumns(10);
+        
+        textField_1 = new JTextField();
+        textField_1.setColumns(10);
+        textField_1.setBounds(10, 91, 224, 29);
+        frame.getContentPane().add(textField_1);
+        
+        textField_2 = new JTextField();
+        textField_2.setColumns(10);
+        textField_2.setBounds(10, 151, 224, 29);
+        frame.getContentPane().add(textField_2);
+        
+        textField_3 = new JTextField();
+        textField_3.setColumns(10);
+        textField_3.setBounds(10, 208, 224, 29);
+        frame.getContentPane().add(textField_3);
+        
+        textField_4 = new JTextField();
+        textField_4.setColumns(10);
+        textField_4.setBounds(10, 266, 224, 29);
+        frame.getContentPane().add(textField_4);
+        
+        textField_5 = new JTextField();
+        textField_5.setColumns(10);
+        textField_5.setBounds(10, 326, 224, 29);
+        frame.getContentPane().add(textField_5);
+        
+        JButton btnNewButton = new JButton("Ajouter nouveau");
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+      
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nom = textField.getText();
+                String prenom = textField_1.getText();
+                String cin = textField_2.getText();
+                String date_embauche = textField_3.getText();
+                String role = textField_4.getText();
+                String salaire = textField_5.getText();
+
+                try {
+                    String sql = "INSERT INTO employee (nom, prenom, cin, date_embauche, role, salaire) VALUES (?, ?, ?, ?, ?, ?)";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setString(1, nom);
+                    pst.setString(2, prenom);
+                    pst.setString(3, cin);
+                    pst.setString(4, date_embauche);
+                    pst.setString(5, role);
+                    pst.setString(6, salaire);
+
+                    pst.executeUpdate();
+                    pst.close();
+
+                    // Ajouter la ligne au modèle de tableau après l'exécution réussie de la requête SQL
+                    Object[] rowData = {nom, prenom, cin, date_embauche, role, salaire};
+                    model.addRow(rowData);
+
+                    JOptionPane.showMessageDialog(null, "Données ajoutées avec succès");
+                } catch (SQLException ex) {
+                    // Afficher le message d'erreur en cas d'échec de l'opération d'insertion
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erreur lors de l'ajout des données : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        btnNewButton.setBounds(393, 415, 145, 38);
+        frame.getContentPane().add(btnNewButton);
+        
+        JButton btnExit = new JButton("Exit");
+        btnExit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                JFrame frame = new JFrame("Exit");
+                if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Employee Database System", 
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) { 
+                    System.exit(0);
+                }
+            }
+        });
+        btnExit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnExit.setBounds(614, 415, 145, 38);
+        frame.getContentPane().add(btnExit);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(298, 50, 474, 334);
+        frame.getContentPane().add(scrollPane);
+        
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        	},
+        	new String[] {
+        		"nom", "prenom", "cin", "date_embauche", "role", "salaire"
+        	}
+        ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, String.class, Integer.class, Object.class, String.class, Double.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
+        });
+        scrollPane.setViewportView(table);
+        
+        JLabel lblNewLabel = new JLabel("EMPLOYE Database");
+        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
+        lblNewLabel.setBounds(443, 9, 192, 29);
+        frame.getContentPane().add(lblNewLabel);
+        
+    }
+
+	public JTextField getPrenomTextField() {
+		return prenomTextField;
+	}
+
+	public void setPrenomTextField(JTextField prenomTextField) {
+		this.prenomTextField = prenomTextField;
+	}
+
+	public JTextField getCinTextField() {
+		return cinTextField;
+	}
+
+	public void setCinTextField(JTextField cinTextField) {
+		this.cinTextField = cinTextField;
+	}
+
+	public JTextField getDateEmbaucheTextField() {
+		return dateEmbaucheTextField;
+	}
+
+	public void setDateEmbaucheTextField(JTextField dateEmbaucheTextField) {
+		this.dateEmbaucheTextField = dateEmbaucheTextField;
+	}
+
+	public JTextField getRoleTextField() {
+		return roleTextField;
+	}
+
+	public void setRoleTextField(JTextField roleTextField) {
+		this.roleTextField = roleTextField;
+	}
+
+	public JTextField getSalaireTextField() {
+		return salaireTextField;
+	}
+
+	public void setSalaireTextField(JTextField salaireTextField) {
+		this.salaireTextField = salaireTextField;
+	}
+}

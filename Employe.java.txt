@@ -1,0 +1,163 @@
+Employe.java
+
+package gestion_entreprise;
+
+import java.util.Date;
+
+public class Employe {
+    private String nom;
+    private String prenom;
+    private int cin;
+    private Date date_embauche;
+    private String role;
+    private double salaire;
+
+    // Constructeur
+    public Employe(String nom, String prenom, int cin, Date date_embauche, String role, double salaire) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.date_embauche = date_embauche;
+        this.role = role;
+        this.salaire = salaire;
+    }
+    
+    //getter et setter
+    public String getNom () {
+        return this.nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public String getPrenom() {
+        return this.prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    public int getCin() {
+        return this.cin;
+    }
+
+    public void setCin(int cin) {
+        this.cin = cin;
+    }
+    
+    public Date getDateEmbauche() {
+        return this.date_embauche;
+    }
+
+    public void setDateEmbauche(Date date_embauche) {
+        this.date_embauche = date_embauche;
+    }
+    
+    
+
+    // Méthode pour affecter un salaire à l'employé
+    public void affecterSalaire(double salaire) {
+        this.salaire = salaire;
+        System.out.println("Le salaire de l'employé " + this.nom + " a été affecté à " + salaire + "DT.");
+    }
+
+    // Méthode pour afficher les détails de l'employé
+    public void afficherDetails() {
+        System.out.println("Nom: " + this.nom);
+        System.out.println("Rôle: " + this.role);
+        System.out.println("Salaire: " + this.salaire);
+
+        // Afficher d'autres détails du bulletin de paie
+        afficherBulletinPaie();
+    }
+
+       // Méthode pour augmenter le salaire de l'employé
+    
+    public void augmenterSalaire(double pourcentageAugmentation) {
+        double augmentation = this.salaire * pourcentageAugmentation / 100;
+        this.salaire += augmentation;
+        System.out.println("Le salaire de l'employé " + this.nom + " a été augmenté de " + pourcentageAugmentation + "%. Nouveau salaire: " + this.salaire + "DT.");
+    }
+
+    // Méthode pour afficher le bulletin de paie de l'employé
+    
+    public void afficherBulletinPaie() {
+        System.out.println("Bulletin de paie de l'employé  ' " + this.nom + " ' :");
+        System.out.println("Salaire de base: " + this.salaire + "DT");
+
+        // Afficher d'autres détails du bulletin de paie (heures travaillées, retenues, etc.)
+        
+        afficherRetenues();
+        afficherHeuresTravaillees();
+            }
+
+    private void afficherRetenues() {
+        // Simulation de calcul des retenues sur le salaire de l'employé
+        double impotsRevenu = 0.15 * this.salaire; // Exemple : 15% du salaire brut
+        double assuranceSante = 50.0; // Exemple : montant fixe de 50DT
+
+        // Affichage des retenues sur le salaire de l'employé
+        System.out.println("Retenues sur le salaire de l'employé ' " + this.nom + " ' : ");
+        System.out.println("- Impôts sur le revenu : " + impotsRevenu + "DT");
+        System.out.println("- Assurance santé : " + assuranceSante + "DT");
+    }
+
+    private void afficherHeuresTravaillees() {
+        // Simulation de récupération des heures travaillées de l'employé depuis une source de données
+        int heuresSemaine1 = 40;
+        int heuresSemaine2 = 38;
+        int heures=heuresSemaine1+heuresSemaine2;
+        // Affichage des heures travaillées par l'employé
+        System.out.println("Heures travaillées par l'employé " + this.nom + " : ");
+        System.out.println("- Semaine 1 : " + heuresSemaine1 + " heures");
+        System.out.println("- Semaine 2 : " + heuresSemaine2 + " heures");
+    }
+	// Méthode pour enregistrer les heures travaillées
+    public void enregistrerHeuresTravaillees(int heures) {
+        System.out.println("Les heures travaillées de l'employé " + this.nom + " ont été enregistrées : " + heures + " heures.");
+    }
+
+    // Méthode pour gérer les congés et les absences
+    public void demanderConge(Date dateDebut, Date dateFin) {
+        System.out.println("L'employé " + this.nom + " a demandé un congé du " + dateDebut + " au " + dateFin + ".");
+    }
+
+    // Méthode pour mettre à jour les informations personnelles de l'employé
+    public void mettreAJourInformationsPersonnelles(String nouvelleAdresse, String nouveauNumeroTel) {
+        System.out.println("Les informations personnelles de l'employé " + this.nom + " ont été mises à jour :");
+        System.out.println("Nouvelle adresse: " + nouvelleAdresse);
+        System.out.println("Nouveau numéro de téléphone: " + nouveauNumeroTel);
+    }
+
+    // Méthode pour attribuer des tâches spécifiques à l'employé
+    public void attribuerTache(String tache) {
+        System.out.println("Une nouvelle tâche a été attribuée à l'employé " + this.nom + " : " + tache);
+    }
+
+    // Méthode pour calculer les avantages sociaux
+    public double calculerAvantagesSociaux() {
+        // Constantes pour les pourcentages et les montants fixes
+        final double TAUX_COTISATION_SECURITE_SOCIALE = 0.2; // 20% du salaire brut
+        final double TAUX_COTISATION_RETRAITE = 0.1; // 10% du salaire brut
+        final double PRESTATIONS_MEDICALES = 50.0; // 50DT par mois
+        final double TAUX_CONGES_PAYES = 0.05; // 5% du salaire brut
+
+        // Calcul des cotisations de sécurité sociale
+        double cotisationsSecuriteSociale = TAUX_COTISATION_SECURITE_SOCIALE * this.salaire;
+
+        // Calcul des cotisations de retraite
+        double cotisationsRetraite = TAUX_COTISATION_RETRAITE * this.salaire;
+
+        // Calcul des prestations médicales
+        double prestationsMedicales = PRESTATIONS_MEDICALES;
+
+        // Calcul des congés payés
+        double congesPayes = TAUX_CONGES_PAYES * this.salaire;
+
+        // Total des avantages sociaux
+        double totalAvantagesSociaux = cotisationsSecuriteSociale + cotisationsRetraite + prestationsMedicales + congesPayes;
+
+        return totalAvantagesSociaux;
+    }
+
+    
+}

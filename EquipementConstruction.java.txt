@@ -1,0 +1,63 @@
+EquipementConstruction.java
+
+
+
+package gestion_entreprise;
+
+public class EquipementConstruction {
+    private String nom;
+    private String description;
+    private String fabricant;
+    private double prix;
+
+    // Constructeur
+    public EquipementConstruction(String nom, String description, String fabricant, double prix) {
+        this.nom = nom;
+        this.description = description;
+        this.fabricant = fabricant;
+        this.prix = prix;
+    }
+    
+    // Getters et setters
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFabricant() {
+        return fabricant;
+    }
+
+    public void setFabricant(String fabricant) {
+        this.fabricant = fabricant;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    // Méthode pour afficher les détails de l'équipement de construction
+    public void afficherDetails() {
+        System.out.println("Nom: " + nom);
+        System.out.println("Description: " + description);
+        System.out.println("Fabricant: " + fabricant);
+        System.out.println("Prix: " + prix + "€");
+    }
+
+
+}

@@ -1,0 +1,96 @@
+fournisseur.java
+
+
+package gestion_entreprise;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class fournisseur {
+	public class Fournisseur {
+	    private String nom;
+	    private String prenom;
+	    private int cin;
+	    private List<Material> materialsFournis;
+	    private List<ServiceProfessionnel> servicesFournis;
+	    private List<EquipementConstruction> equipementsFournis;
+
+	    // Constructeur
+	    public Fournisseur(String nom, String prenom, int cin) {
+	        this.nom = nom;
+	        this.prenom = prenom;
+	        this.cin = cin;
+	        this.materialsFournis = new ArrayList<>();
+	    }
+	    
+
+	    // Getters et setters
+	    public String getNom() {
+	        return nom;
+	    }
+
+	    public void setNom(String nom) {
+	        this.nom = nom;
+	    }
+
+	    public String getPrenom() {
+	        return prenom;
+	    }
+
+	    public void setPrenom(String prenom) {
+	        this.prenom = prenom;
+	    }
+
+	    public int getCin() {
+	        return cin;
+	    }
+
+	    public void setCin(int cin) {
+	        this.cin = cin;
+	    }
+
+	    // Méthode pour ajouter un matériau fourni
+	    public void ajouterMaterial(Material material) {
+	        materialsFournis.add(material);
+	        System.out.println("Le matériau " + material.getName() + " a été ajouté aux fournitures du fournisseur " + nom + " " + prenom + ".");
+	    }
+
+	    // Méthode pour afficher les matériaux fournis par le fournisseur
+	    public void afficherMaterialsFournis() {
+	        System.out.println("Matériaux fournis par le fournisseur " + nom + " " + prenom + ":");
+	        for (Material material : materialsFournis) {
+	            material.displayInfo();
+	        }
+	    }
+
+	 // Méthode pour ajouter un service professionnel fourni
+	    public void ajouterService(ServiceProfessionnel service) {
+	        servicesFournis.add(service);
+	        System.out.println("Le service " + service.getNom() + " a été ajouté aux services fournis par le fournisseur " + nom + " " + prenom + ".");
+	    }
+
+	    // Méthode pour afficher les services professionnels fournis par le fournisseur
+	    public void afficherServicesFournis() {
+	        System.out.println("Services professionnels fournis par le fournisseur " + nom + " " + prenom + ":");
+	        for (ServiceProfessionnel service : servicesFournis) {
+	            service.afficherDetails();
+	        }
+	    }
+
+	    // Méthode pour ajouter un équipement de construction fourni
+	    public void ajouterEquipement(EquipementConstruction equipement) {
+	        equipementsFournis.add(equipement);
+	        System.out.println("L'équipement " + equipement.getNom() + " a été ajouté aux équipements fournis par le fournisseur " + nom + " " + prenom + ".");
+	    }
+
+	    // Méthode pour afficher les équipements de construction fournis par le fournisseur
+	    public void afficherEquipementsFournis() {
+	        System.out.println("Équipements de construction fournis par le fournisseur " + nom + " " + prenom + ":");
+	        for (EquipementConstruction equipement : equipementsFournis) {
+	            equipement.afficherDetails();
+	        }
+	    }
+
+	}
+}

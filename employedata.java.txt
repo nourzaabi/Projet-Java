@@ -1,0 +1,36 @@
+employedata.java
+
+
+package gestion_entreprise;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+public class employeData {
+
+	public static Connection connectDB() throws ClassNotFoundException, SQLException {
+	    Connection conn = null;
+	    
+	    String dbPath = "C:\\Users\\HP\\Desktop\\employe database.db";
+	    try {
+	        
+	        Class.forName("org.sqlite.JDBC");
+	        
+	        conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+	        JOptionPane.showMessageDialog(null, "Connexion réussie à la base de données.");
+	    } catch (ClassNotFoundException e) {
+	        
+	        JOptionPane.showMessageDialog(null, "Erreur : Pilote JDBC introuvable.");
+	        
+	        throw e;
+	    } catch (SQLException e) {
+
+
+	        JOptionPane.showMessageDialog(null, "Erreur lors de la connexion à la base de données : " + e.getMessage());
+	        
+	        throw e;
+	    }
+	    return conn;
+	}}

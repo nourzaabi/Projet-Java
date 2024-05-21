@@ -1,0 +1,114 @@
+main.java
+
+
+package gestion_entreprise;
+
+import java.util.Date;
+
+public class main {
+
+    public static void main(String[] args) {
+    	
+    	// Création du premier entrepreneur
+        Entrepreneur entrepreneur1 = new Entrepreneur("Nour Houda Zaabi", "EL Ghazela , Ariana , Tunis ");
+        System.out.println("Détails sur le premier entrepreneur:");
+        System.out.println("Nom : " + entrepreneur1.getNomEntrepreneur());
+        System.out.println("Adresse: " + entrepreneur1.getAdresseEntrepreneur());
+        System.out.println();
+
+        // Création du deuxième entrepreneur
+        Entrepreneur entrepreneur2 = new Entrepreneur("Maysen Tayeb", "Morneg , Ben Arous, Tunis ");
+        System.out.println("Détails sur le deuxième entrepreneur:");
+        System.out.println("Nom : " + entrepreneur2.getNomEntrepreneur());
+        System.out.println("Adresse: " + entrepreneur2.getAdresseEntrepreneur());
+        System.out.println();
+        
+    	
+    	
+    	
+        // Partie 1: Gestion de l'entrepreneur et des projets
+        //gestionEntrepreneur();
+
+        // Partie 2: Gestion des employés
+        gestionEmployes();
+    }
+/*
+    public static void gestionEntrepreneur() {
+        // Création de l'entrepreneur Mayssen
+        Entrepreneur entrepreneurMayssen = new Entrepreneur("Mayssen", "Morneg");
+
+        // Création des projets pour l'entrepreneur Mayssen
+        entrepreneurMayssen.creerProjet("Projet A ", "Localisation 1", new Date(), new Date(), 10);
+        entrepreneurMayssen.creerProjet("Projet B ", "Localisation 1", new Date(), new Date(), 15);
+        System.out.println();
+        System.out.println();
+        // Affichage des informations sur l'entrepreneur Mayssen et ses projets
+        entrepreneurMayssen.afficherInformations();
+        
+
+        // Calcul du coût total des projets de l'entrepreneur Mayssen
+        System.out.println("Coût total des projets de Mayssen : " + entrepreneurMayssen.calculerCoutTotalProjets());
+        System.out.println();
+        System.out.println();
+        // Création de l'entrepreneur Nour
+        Entrepreneur entrepreneurNour = new Entrepreneur("Nour", "EL Ghazella");
+
+        // Création des projets pour l'entrepreneur Nour
+        entrepreneurNour.creerProjet("Projet  1 ", "Localisation 1", new Date(), new Date(), 20);
+        entrepreneurNour.creerProjet("Projet  2 ", "Localisation 1", new Date(), new Date(), 25);
+        System.out.println();
+        System.out.println();
+        // Affichage des informations sur l'entrepreneur Nour et ses projets
+        entrepreneurNour.afficherInformations();
+        
+        System.out.println();
+        System.out.println();
+        // Calcul du coût total des projets de l'entrepreneur Nour
+        System.out.println("Coût total des projets de Nour : " + entrepreneurNour.calculerCoutTotalProjets());
+    }*/
+
+    
+    
+    
+    
+    
+    public static void gestionEmployes() {
+        Employe employe1 = new Employe("ali abab", "Ingenieur Civil", 0, null, "ingenieur civil", 2500.0);
+        employe1.afficherDetails();
+        employe1.affecterSalaire(2800.0);
+        employe1.augmenterSalaire(10);
+        employe1.enregistrerHeuresTravaillees(40);
+
+        Date dateDebutConge = new Date(2024, 5, 1);
+        Date dateFinConge = new Date(2024, 5, 15);
+        employe1.demanderConge(dateDebutConge, dateFinConge);
+
+        employe1.mettreAJourInformationsPersonnelles("Nouvelle adresse", "Nouveau numéro de téléphone");
+        employe1.attribuerTache("Prends une nouvelle fonctionnalité");
+
+        double avantagesSociaux = employe1.calculerAvantagesSociaux();
+        System.out.println("Les avantages sociaux de l'employé " + employe1.getNom() + " sont de : " + avantagesSociaux + "DT .");
+        
+        System.out.println();
+        System.out.println();
+
+        Employe employe2 = new Employe("Fatima Ben Ali", "Architecte", 0, null, "architecte", 2700.0);
+        employe2.afficherDetails();
+        employe2.affecterSalaire(3000.0);
+        employe2.augmenterSalaire(15);
+        employe2.enregistrerHeuresTravaillees(45);
+
+        Date dateDebutConge2 = new Date(2024, 6, 1);
+        Date dateFinConge2 = new Date(2024, 6, 15);
+        employe2.demanderConge(dateDebutConge2, dateFinConge2);
+
+        employe2.mettreAJourInformationsPersonnelles("Nouvelle adresse 2", "Nouveau numéro de téléphone 2");
+        employe2.attribuerTache("Travailler sur le projet 1 ");
+
+        double avantagesSociaux2 = employe2.calculerAvantagesSociaux();
+        System.out.println("Les avantages sociaux de l'employé " + employe2.getNom() + " sont de : " + avantagesSociaux2 + " DT .");
+        
+    }
+    
+    
+}
